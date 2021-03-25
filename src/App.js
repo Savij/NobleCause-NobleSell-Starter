@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { MuiThemeProvider, withTheme } from '@material-ui/core/styles';
+import { BrowserRouter } from 'react-router-dom';
+import { theme } from './Theme';
+import { useStyles } from './App.Styles';
+import AppHost from './AppHost';
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <BrowserRouter>
+        <CssBaseline />
+        <div className={classes.container}>
+          <AppHost />
+        </div>
+      </BrowserRouter>
+    </MuiThemeProvider>
   );
 }
 
-export default App;
+export default withTheme(App);
